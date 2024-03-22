@@ -1,7 +1,8 @@
-function multiplyDigits(num) {
+let num = 266219;
+function multiply(num) {
   let result = 1;
   // Преобразуем число в строку, чтобы можно было итерировать по его цифрам
-  const numStr = String(num);
+  let numStr = String(num);
   // Итерируем по каждой цифре числа
   for (let i = 0; i < numStr.length; i++) {
     // Преобразуем текущую цифру из строки обратно в число и умножаем на текущий результат
@@ -9,12 +10,12 @@ function multiplyDigits(num) {
   }
   return result;
 }
-let num = 266219;
-console.log(multiplyDigits(num));
-let myVarMultiplyDigits = multiplyDigits(num);
 
-myVarMultiplyDigits **= 3;
-console.log(myVarMultiplyDigits);
+console.log(multiply(num));
+let myVarMultiply = multiply(num);
 
-let strMyVarMultiplyDigits = String(myVarMultiplyDigits);
-console.log(strMyVarMultiplyDigits.substring(0, 2));
+myVarMultiply **= 3;
+console.log(myVarMultiply);
+
+let strMyVarMultiply = String(myVarMultiply);
+console.log(strMyVarMultiply.slice(0, 2));
