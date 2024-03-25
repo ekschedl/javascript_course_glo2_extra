@@ -1,21 +1,50 @@
-let num = 266219;
-function multiply(num) {
-  let result = 1;
-  // Преобразуем число в строку, чтобы можно было итерировать по его цифрам
-  let numStr = String(num);
-  // Итерируем по каждой цифре числа
-  for (let i = 0; i < numStr.length; i++) {
-    // Преобразуем текущую цифру из строки обратно в число и умножаем на текущий результат
-    result *= parseInt(numStr[i]);
-  }
-  return result;
+const lang = prompt("Выберите язык", "например: ru или eng");
+const text_eng =
+  "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday";
+const text_ru =
+  "Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Восресенье";
+if (lang == "ru") {
+  console.log(text_ru);
+} else if (lang == "eng") {
+  console.log(text_eng);
+} else {
+  console.log("Выберите язык, например: ru или eng");
 }
 
-console.log(multiply(num));
-let myVarMultiply = multiply(num);
+switch (lang) {
+  case "ru":
+    console.log(text_ru);
+    break;
+  case "eng":
+    console.log(text_eng);
+    break;
+  default:
+    console.log("Выберите язык, например: ru или eng");
+    break;
+}
+// честно признаюсь /этот вариант я гуглила, сама я такео еще не знаю, но логика понятна
+const lang2 = prompt("Выберите язык, например: rus или eng");
 
-myVarMultiply **= 3;
-console.log(myVarMultiply);
+const daysOfWeek = {
+  rus: [
+    "Понедельник",
+    "Вторник",
+    "Среда",
+    "Четверг",
+    "Пятница",
+    "Суббота",
+    "Воскресенье",
+  ],
+  eng: [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ],
+};
 
-let strMyVarMultiply = String(myVarMultiply);
-console.log(strMyVarMultiply.slice(0, 2));
+const result = daysOfWeek[lang2] || "Выберите язык rus или eng";
+console.log(result);
