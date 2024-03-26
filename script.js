@@ -2,9 +2,9 @@ const lang = prompt("Выберите язык", "например: ru или en
 const textEn = "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday";
 const textRu =
   "Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Восресенье";
-if (lang == "ru") {
+if (lang === "ru") {
   console.log(textRu);
-} else if (lang == "en") {
+} else if (lang === "en") {
   console.log(textEn);
 } else {
   console.log("Выберите язык, например: ru или en");
