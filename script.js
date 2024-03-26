@@ -1,22 +1,21 @@
 const lang = prompt("Выберите язык", "например: ru или en");
-const text_en =
-  "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday";
-const text_ru =
+const textEn = "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday";
+const textRu =
   "Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Восресенье";
 if (lang == "ru") {
-  console.log(text_ru);
+  console.log(textRu);
 } else if (lang == "en") {
-  console.log(text_en);
+  console.log(textEn);
 } else {
   console.log("Выберите язык, например: ru или en");
 }
 
 switch (lang) {
   case "ru":
-    console.log(text_ru);
+    console.log(textRu);
     break;
   case "en":
-    console.log(text_en);
+    console.log(textEn);
     break;
   default:
     console.log("Выберите язык, например: ru или en");
