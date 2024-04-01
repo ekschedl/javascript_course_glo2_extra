@@ -1,6 +1,3 @@
-// waiting for feedback from teacher
-"use strict";
-
 const appData = {
   title: "",
   screens: [],
@@ -67,17 +64,25 @@ const appData = {
         price = prompt("Сколько это будет стоить? (цифры)");
       } while (!appData.isNumber(price));
 
-      appData.services[name] = +price;
+      // Генерация уникального ключа для каждого типа услуги
+      const uniqueKey = name + "_" + Date.now(); // Используем текущее время для уникальности
+
+      // Сохранение ответа в объекте services
+      appData.services[uniqueKey] = +price;
+      console.log(appData.services);
     }
 
     appData.adaptive = confirm("Нужен ли адаптив на сайте?");
   },
 
   addPrices: function () {
-    for (let screen of appData.screens) {
-      appData.screenPrice += +screen.price;
-    }
+    // Вычисление суммы цен всех экранов с использованием метода reduce()
+    appData.screenPrice = appData.screens.reduce(
+      (total, screen) => total + screen.price, // функция суммирования для каждого элемента массива
+      0 // начальное значение аккумулятора
+    );
 
+    // Вычисление суммы цен всех дополнительных услуг
     for (let key in appData.services) {
       appData.allServicePrices += appData.services[key];
     }
