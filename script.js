@@ -1,81 +1,80 @@
-// Получаем текущую дату и время
-const currentDate = new Date();
-
-// Форматируем часы так, чтобы всегда было две цифры
-const hours =
-  currentDate.getHours() < 10
-    ? "0" + currentDate.getHours()
-    : currentDate.getHours();
-
-// Форматируем минуты так, чтобы всегда было две цифры
-const minutes =
-  currentDate.getMinutes() < 10
-    ? "0" + currentDate.getMinutes()
-    : currentDate.getMinutes();
-
-// Форматируем секунды так, чтобы всегда было две цифры
-const seconds =
-  currentDate.getSeconds() < 10
-    ? "0" + currentDate.getSeconds()
-    : currentDate.getSeconds();
-
-// Определяем слово "час" с правильным склонением в зависимости от числа часов
-const hourWord = (() => {
-  const hours = currentDate.getHours();
-  if (hours === 1) {
+// Функция, которая меняет склонение слова "час" в зависимости от числа
+function getHourWord(number) {
+  if (number === 1) {
     return "час";
-  } else if (hours >= 2 && hours <= 4) {
+  } else if (number >= 2 && number <= 4) {
     return "часа";
   } else {
     return "часов";
   }
-})();
+}
 
-// Определяем название текущего дня недели на русском языке
-const daysOfWeek = [
-  "Воскресенье",
-  "Понедельник",
-  "Вторник",
-  "Среда",
-  "Четверг",
-  "Пятница",
-  "Суббота",
-];
-const dayOfWeek = daysOfWeek[currentDate.getDay()];
+// Функция для форматирования даты и времени в формате а) с учетом склонения слова "час"
+function formatA(date) {
+  // Массивы для хранения названий дней недели и месяцев на русском языке
+  const daysOfWeek = [
+    "Воскресенье",
+    "Понедельник",
+    "Вторник",
+    "Среда",
+    "Четверг",
+    "Пятница",
+    "Суббота",
+  ];
+  const months = [
+    "января",
+    "февраля",
+    "марта",
+    "апреля",
+    "мая",
+    "июня",
+    "июля",
+    "августа",
+    "сентября",
+    "октября",
+    "ноября",
+    "декабря",
+  ];
 
-// Определяем день месяца
-const dayOfMonth = currentDate.getDate();
+  // Получаем информацию о дне недели, дне месяца, месяце, годе, часах, минутах и секундах из объекта даты
+  const dayOfWeek = daysOfWeek[date.getDay()];
+  const dayOfMonth = date.getDate();
+  const month = months[date.getMonth()];
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
 
-// Определяем название текущего месяца на русском языке
-const months = [
-  "января",
-  "февраля",
-  "марта",
-  "апреля",
-  "мая",
-  "июня",
-  "июля",
-  "августа",
-  "сентября",
-  "октября",
-  "ноября",
-  "декабря",
-];
-const month = months[currentDate.getMonth()];
+  // Получаем склонение слова "час" с помощью функции getHourWord
+  const hourWord = getHourWord(hours);
 
-// Определяем текущий год
-const year = currentDate.getFullYear();
+  // Формируем отформатированную строку с данными
+  return `Сегодня ${dayOfWeek}, ${dayOfMonth} ${month} ${year} года, ${hours} ${hourWord} ${minutes} минут ${seconds} секунд`;
+}
 
-// Форматируем дату и время в формате "Сегодня ДеньНедели, День Месяца Год года, Час Часов Минуты Секунды"
-const formattedDateA = `Сегодня ${dayOfWeek}, ${dayOfMonth} ${month} ${year} года, ${hours} ${hourWord} ${minutes} минут ${seconds} секунд`;
+// Функция, которая добавляет ведущий ноль к числам, если они меньше 10
+function addLeadingZero(number) {
+  // Если число меньше 10, добавляем ведущий ноль, иначе возвращаем число без изменений
+  return number < 10 ? "0" + number : number;
+}
 
-// Форматируем дату и время в формате "День Месяца Год - Часы:Минуты:Секунды"
-const formattedDateB = `${dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth}.${
-  currentDate.getMonth() + 1 < 10
-    ? "0" + (currentDate.getMonth() + 1)
-    : currentDate.getMonth() + 1
-}.${year} - ${hours}:${minutes}:${seconds}`;
+// Получаем текущую дату и время
+const currentDate = new Date();
 
-// Выводим результат на страницу
+// Форматируем дату и время в формате а)
+const formattedDateA = formatA(currentDate);
+
+// Форматируем дату и время в формате б)
+const formattedDateB = `${addLeadingZero(
+  currentDate.getDate()
+)}.${addLeadingZero(
+  currentDate.getMonth() + 1
+)}.${currentDate.getFullYear()} - ${addLeadingZero(
+  currentDate.getHours()
+)}:${addLeadingZero(currentDate.getMinutes())}:${addLeadingZero(
+  currentDate.getSeconds()
+)}`;
+
+// Выводим отформатированную дату и время на страницу
 document.getElementById("formattedDate1").textContent = formattedDateA;
 document.getElementById("formattedDate2").textContent = formattedDateB;
